@@ -15,17 +15,11 @@ class Expenses extends StatefulWidget {
 class _ExpensesState extends State<Expenses> {
   final List<Expense> _registeredExpenses = [
     Expense(
-      title: 'Gasoline',
+      title: 'Example expense',
       amount: 50.50,
       date: DateTime.now(),
       category: Category.work,
-    ),
-    Expense(
-      title: 'Plane ticket',
-      amount: 234.11,
-      date: DateTime.now(),
-      category: Category.travel,
-    ),
+    )
   ];
 
   _openAddOverlay() {
@@ -78,7 +72,8 @@ class _ExpensesState extends State<Expenses> {
     }
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My expense tracker'),
+        title: Text('My expense tracker',
+            style: Theme.of(context).textTheme.titleLarge),
         actions: [
           IconButton(
             onPressed: _openAddOverlay,
