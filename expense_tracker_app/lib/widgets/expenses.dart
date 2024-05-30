@@ -15,24 +15,6 @@ class Expenses extends StatefulWidget {
 class _ExpensesState extends State<Expenses> {
   final List<Expense> _registeredExpenses = [
     Expense(
-      title: 'cola',
-      amount: 2,
-      date: DateTime.now(),
-      category: Category.food,
-    ),
-    Expense(
-      title: 'Steak',
-      amount: 15,
-      date: DateTime.now(),
-      category: Category.food,
-    ),
-    Expense(
-      title: 'Cinema',
-      amount: 15.69,
-      date: DateTime.now(),
-      category: Category.leisure,
-    ),
-    Expense(
       title: 'Gasoline',
       amount: 50.50,
       date: DateTime.now(),
@@ -48,16 +30,55 @@ class _ExpensesState extends State<Expenses> {
 
   _openAddOverlay() {
     showModalBottomSheet(
+      isScrollControlled: true,
       context: context,
-      builder: (ctx) => NewExpense(),
+      builder: (ctx) => NewExpense(
+        onAddExpense: _addExpense,
+      ),
+    );
+  }
+
+  void _addExpense(Expense expense) {
+    setState(() {
+      _registeredExpenses.add(expense);
+    });
+  }
+
+  void _removeExpense(Expense expense) {
+    final expenseIndex = _registeredExpenses.indexOf(expense);
+    setState(() {
+      _registeredExpenses.remove(expense);
+    });
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 3),
+        content: Text('${expense.title} was removed'),
+        action: SnackBarAction(
+          label: 'Undo',
+          onPressed: () {
+            setState(() {
+              _registeredExpenses.insert(expenseIndex, expense);
+            });
+          },
+        ),
+      ),
     );
   }
 
   @override
   Widget build(context) {
+    Widget mainContent = const Center(
+      child: Text('No expenses found'),
+    );
+
+    if (_registeredExpenses.isNotEmpty) {
+      mainContent = ExpensesList(
+          expenses: _registeredExpenses, onRempoveExpense: _removeExpense);
+    }
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Your expense tracker'),
+        title: const Text('My expense tracker'),
         actions: [
           IconButton(
             onPressed: _openAddOverlay,
@@ -67,10 +88,8 @@ class _ExpensesState extends State<Expenses> {
       ),
       body: Column(
         children: [
-          Text('hello'),
-          Expanded(
-            child: ExpensesList(expenses: _registeredExpenses),
-          ),
+          const Text('Chart'),
+          Expanded(child: mainContent),
         ],
       ),
     );
