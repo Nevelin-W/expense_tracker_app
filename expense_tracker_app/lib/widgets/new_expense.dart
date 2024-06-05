@@ -77,8 +77,9 @@ class _NewExpenseState extends State<NewExpense> {
   @override
   Widget build(context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 48, 16, 16),
+      padding: const EdgeInsets.fromLTRB(10, 48, 4, 16),
       child: Column(
+        
         children: [
           TextField(
             controller: _titleController,
@@ -99,9 +100,10 @@ class _NewExpenseState extends State<NewExpense> {
                   ),
                 ),
               ),
-              const SizedBox(width: 16),
+              /* const SizedBox(width: 16), */
               Expanded(
                 child: Row(
+                  
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -111,6 +113,7 @@ class _NewExpenseState extends State<NewExpense> {
                     IconButton(
                       onPressed: _datePicker,
                       icon: const Icon(Icons.calendar_month),
+                      iconSize: 25,
                     ),
                   ],
                 ),
