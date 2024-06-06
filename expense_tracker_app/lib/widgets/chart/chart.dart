@@ -31,10 +31,8 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode =
-        MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Container(
-      margin: const EdgeInsets.all(16),
+      margin: const EdgeInsets.all(6),
       padding: const EdgeInsets.symmetric(
         vertical: 16,
         horizontal: 8,
@@ -43,10 +41,10 @@ class Chart extends StatelessWidget {
       height: 180,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           colors: [
-            Theme.of(context).colorScheme.primaryContainer.withOpacity(0.3),
-            Theme.of(context).colorScheme.primary.withOpacity(0.0)
+            Color.fromRGBO(25, 25, 25, 1),
+            Color.fromRGBO(206, 208, 206, 0.5)
           ],
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
@@ -74,15 +72,8 @@ class Chart extends StatelessWidget {
                   (bucket) => Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 4),
-                      child: Icon(
-                        categoryIcons[bucket.category],
-                        color: isDarkMode
-                            ? Theme.of(context).colorScheme.primaryFixedDim
-                            : Theme.of(context)
-                                .colorScheme
-                                .primary
-                                .withOpacity(0.7),
-                      ),
+                      child: Icon(categoryIcons[bucket.category],
+                          color: const Color.fromRGBO(241, 80, 37, 1)),
                     ),
                   ),
                 )

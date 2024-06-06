@@ -81,14 +81,17 @@ class _NewExpenseState extends State<NewExpense> {
       child: Column(
         
         children: [
+          
           TextField(
             controller: _titleController,
             maxLength: 50,
             decoration: const InputDecoration(
               label: Text('Title'),
+              
             ),
           ),
           Row(
+            
             children: [
               Expanded(
                 child: TextField(
@@ -103,7 +106,6 @@ class _NewExpenseState extends State<NewExpense> {
               /* const SizedBox(width: 16), */
               Expanded(
                 child: Row(
-                  
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:expense_tracker_app/widgets/expenses.dart';
+// import 'package:flutter/services.dart';
 
-var kColorScheme = ColorScheme.fromSeed(seedColor: const Color(0xff18b49b));
+var kColorScheme =
+    ColorScheme.fromSeed(seedColor: const Color.fromRGBO(241, 80, 37, 1));
 
 /* var kLAlternativeColorTheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(246, 8, 40, 66),
@@ -9,8 +11,8 @@ var kColorScheme = ColorScheme.fromSeed(seedColor: const Color(0xff18b49b));
 );
  */
 var appBarTheme = const AppBarTheme().copyWith(
-  backgroundColor: kColorScheme.primaryFixedDim,
-  foregroundColor: kColorScheme.scrim,
+  backgroundColor: const Color.fromRGBO(241, 80, 37, 1),
+  foregroundColor: const Color.fromRGBO(25, 25, 25, 1),
   elevation: 5,
   shadowColor: kColorScheme.shadow,
   toolbarHeight: 50,
@@ -25,8 +27,8 @@ var appBarTheme = const AppBarTheme().copyWith(
 ); */
 
 var cardTheme = const CardTheme().copyWith(
-  color: kColorScheme.inversePrimary,
-  surfaceTintColor: kColorScheme.secondary,
+  color: const Color.fromRGBO(241, 80, 37, 1),
+  surfaceTintColor: const Color.fromRGBO(230, 232, 230, 1),
   elevation: 5,
   margin: const EdgeInsets.symmetric(
     horizontal: 15,
@@ -46,7 +48,8 @@ var cardTheme = const CardTheme().copyWith(
 
 var elevatedButtonTheme = ElevatedButtonThemeData(
   style: ElevatedButton.styleFrom(
-    backgroundColor: kColorScheme.primaryFixed,
+    backgroundColor: const Color.fromRGBO(241, 80, 37, 1),
+    foregroundColor: const Color.fromRGBO(25, 25, 25, 1),
   ),
 );
 
@@ -58,6 +61,10 @@ var elevatedButtonTheme = ElevatedButtonThemeData(
  */
 
 void main() {
+  /* WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]).then((fn) { */
   runApp(
     MaterialApp(
       /* darkTheme: ThemeData.dark().copyWith(
@@ -70,21 +77,24 @@ void main() {
         colorScheme: kColorScheme,
         appBarTheme: appBarTheme,
         elevatedButtonTheme: elevatedButtonTheme,
-        scaffoldBackgroundColor: kColorScheme.onTertiaryContainer,
+        scaffoldBackgroundColor: const Color.fromRGBO(25, 25, 25, 1),
         cardTheme: cardTheme,
+        snackBarTheme: const SnackBarThemeData().copyWith(
+          backgroundColor: const Color.fromRGBO(25, 25, 25, 1),
+        ),
         textTheme: ThemeData().textTheme.copyWith(
-              titleLarge: TextStyle(
-                color: kColorScheme.onTertiaryContainer,
+              titleLarge: const TextStyle(
+                color: Color.fromRGBO(25, 25, 25, 1),
                 fontWeight: FontWeight.w600,
                 fontSize: 20,
               ),
-              titleMedium: TextStyle(
-                color: kColorScheme.scrim,
+              titleMedium: const TextStyle(
+                color: Color.fromRGBO(25, 25, 25, 1),
                 fontWeight: FontWeight.w500,
                 fontSize: 15,
               ),
-              titleSmall: TextStyle(
-                color: kColorScheme.scrim,
+              titleSmall: const TextStyle(
+                color: Color.fromRGBO(25, 25, 25, 1),
                 fontWeight: FontWeight.w400,
                 fontSize: 15,
               ),
@@ -94,4 +104,5 @@ void main() {
       home: const Expenses(),
     ),
   );
+  /*  }); */
 }
